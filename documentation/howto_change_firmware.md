@@ -1,4 +1,4 @@
-# How to compile the rnode firmware for the E22 module with ESP32-S3
+# How to compile firmware for the E22 module with ESP32-S3
 
 ## Dependencies
 
