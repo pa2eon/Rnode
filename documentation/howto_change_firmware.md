@@ -244,7 +244,7 @@ If you are flashing a custom board, you will need to generate a signing key in r
 
     $ rnodeconf -k
 
-Than flash the firmware.
+Then flash the firmware;
 
     $ make upload-espressif-esp32-s3-n16r8
   
