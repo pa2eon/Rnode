@@ -247,7 +247,7 @@ If you are flashing a custom board, you will need to generate a signing key in r
 
 Then flash the firmware;
 
-    $ make upload-espressif-esp32-s3-n16r8
+    $ make firmware-espressif-esp32-s3-n16r8
   
 
 
