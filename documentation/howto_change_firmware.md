@@ -47,8 +47,8 @@ To test if you can compile the firmware try it:
 
     $ make firmware-heltec32_v3
 
-Note: The RX buffer value must be changed - */BluetoothSerial.cpp to 6144
-      The TX buffer value must be changed - */BluetoothSerial.cpp to 384    
+Note: The RX buffer value must be changed (near line 43) - */libraries/BluetoothSerial/src/BluetoothSerial.cpp to 6144 <br>
+      The TX buffer value must be changed (near line 44) - */libraries/BluetoothSerial/src/BluetoothSerial.cpp to 384 <br>   
 
 After this command you will find an compiled folder: $ ~/RNode_Firmware_CE/build/heltec32_v3
 
