@@ -158,6 +158,61 @@ $ sudo nano Makefile
         cp build/esp32.esp32.espressif-esp32-s3-n16r8/RNode_Firmware_CE.ino.partitions.bin build/rnode_firmware_espressif-esp32-s3-n16r8.partitions
         zip --junk-paths ./Release/rnode_firmware_espressif-esp32-s3-n16r8.zip ./Release/esptool/esptool.py ./Release/console_image.bin build/rnode_firmware_t3s3_sx126xrnode_firmware_espressif-esp32-s3-n16r8.boot_app0 build/rnode_firmware_espressif-esp32-s3-n16r8.bin build/rnode_firmware_espressif-esp32-s3-n16r8.bootloader build/rnode_firmware_espressif-esp32-s3-n16r8.partitions
         rm -r build
-  
+	
+ In the file <b>Boards.h<b> make an entry for the new board within the '#if MCU_VARIANT == MCU_ESP32':
+
+      #elif BOARD_MODEL == BOARD_ESPRESSIF-esp32-s3-n16r8
+      #define IS_ESP32S3 true
+      #define HAS_DISPLAY false
+      #define HAS_BLUETOOTH false
+      #define HAS_BLE true
+      #define HAS_PMU true
+      #define HAS_CONSOLE true
+      #define HAS_EEPROM true
+      //#define HAS_INPUT true
+      //#define HAS_SLEEP true
+      //#define PIN_WAKEUP GPIO_NUM_0
+      //#define WAKEUP_LEVEL 0
+      #define INTERFACE_COUNT 1
+      #define OCP_TUNED 0x38
+
+      const int pin_btn_usr1 = 0;
+
+      #define HAS_NP true
+      const int pin_np = 21;
+      #if HAS_NP == false
+        #if defined(EXTERNAL_LEDS)
+          const int pin_led_rx = 16;
+          const int pin_led_tx = 17;
+        #else
+          const int pin_led_rx = 21;
+          const int pin_led_tx = 21;
+        #endif
+      #endif
+
+      const uint8_t interfaces[INTERFACE_COUNT] = {SX1268};
+      const bool interface_cfg[INTERFACE_COUNT][3] = {
+                    // SX1268
+          {
+              false, // DEFAULT_SPI
+              false, // HAS_TCXO
+              false  // DIO2_AS_RF_SWITCH
+          },
+      };
+      const uint8_t interface_pins[INTERFACE_COUNT][10] = {
+                  // SX1268
+          {
+               10, // pin_ss
+               12, // pin_sclk
+               11, // pin_mosi
+               13, // pin_miso
+               -1, // pin_busy
+               15, // pin_dio
+               14, // pin_reset
+               -1, // pin_txen
+               -1, // pin_rxen
+               -1  // pin_tcxo_enable
+          }
+      };
 
 
