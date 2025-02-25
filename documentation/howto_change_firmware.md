@@ -159,7 +159,7 @@ $ sudo nano Makefile
         zip --junk-paths ./Release/rnode_firmware_espressif-esp32-s3-n16r8.zip ./Release/esptool/esptool.py ./Release/console_image.bin build/rnode_firmware_t3s3_sx126xrnode_firmware_espressif-esp32-s3-n16r8.boot_app0 build/rnode_firmware_espressif-esp32-s3-n16r8.bin build/rnode_firmware_espressif-esp32-s3-n16r8.bootloader build/rnode_firmware_espressif-esp32-s3-n16r8.partitions
         rm -r build
 	
- In the file <b>Boards.h<b> make an entry for the new board within the '#if MCU_VARIANT == MCU_ESP32':
+ In the file <b>Boards.h</b> make an entry for the new board within the '#if MCU_VARIANT == MCU_ESP32':
 
       #elif BOARD_MODEL == BOARD_ESPRESSIF-esp32-s3-n16r8
       #define IS_ESP32S3 true
