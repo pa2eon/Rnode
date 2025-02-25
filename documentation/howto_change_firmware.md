@@ -134,29 +134,29 @@ If we want to add support for a new board we have to add a new section for this 
 
 First we have to make define both BOARD_MODEL and BOARD_VARIANT.
 Let's define BOARD_MODEL as 0x62 and BOARD_VARIANT as 0x32 as these numbers are not used yet. 
-Here the 0x32 indicates the use of a SX1268 Semtech LoRa transceiver.
+Here the 0x32 indicates the use of a SX1268 Semtech E22 LoRa transceiver.
 
 $ sudo nano Makefile
 
     # Added-board from PA2EON
-    firmware-esp32-s3-n16r8: check_bt_buffers
+    firmware-espressif-esp32-s3-n16r8: check_bt_buffers
        arduino-cli compile --fqbn "esp32:esp32:esp32s3:CDCOnBoot=cdc" $(COMMON_BUILD_FLAGS) --build-property          "compiler.cpp.extra_flags=\"-DBOARD_MODEL=0x62\""  
 
     # Added board from PA2EON
-    upload-esp32-s3-n16r8:
+    upload-espressif-esp32-s3-n16r8:
 	    arduino-cli upload -p $(or $(port), /dev/ttyACM0) --fqbn esp32:esp32:esp32s3
 	    @sleep 1
 	    rnodeconf $(or $(port), /dev/ttyACM0) --firmware-hash $$(./partition_hashes ./build/esp32.esp32.esp32s3/RNode_Firmware_CE.ino.bin)
 	    @sleep 3
 	    python3 ./Release/esptool/esptool.py --port $(or $(port), /dev/ttyACM0) --chip esp32-s3 --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size 4MB 0x210000 ./Release/console_image.bin
 
-    release-esp32-s3-n16r8:
-        arduino-cli compile --fqbn "esp32:esp32:esp32s3:CDCOnBoot=cdc" $(COMMON_BUILD_FLAGS) --build-property "compiler.cpp.extra_flags=\"-DBOARD_MODEL=0x62\" \"-DBOARD_VARIANT=0x32\""
-        cp ~/.arduino15/packages/esp32/hardware/esp32/$(ARDUINO_ESP_CORE_VER)/tools/partitions/boot_app0.bin build/rnode_firmware-esp32-s3-n16r8.boot_app0
-        cp build/esp32.esp32.waveshare-esp32-s3-pico/RNode_Firmware_CE.ino.bin build/rnode_firmware-esp32-s3-n16r8.bin
-        cp build/esp32.esp32.waveshare-esp32-s3-pico/RNode_Firmware_CE.ino.bootloader.bin build/rnode_firmware-esp32-s3-n16r8.bootloader
-        cp build/esp32.esp32.esp32-s3-n16r8/RNode_Firmware_CE.ino.partitions.bin build/rnode_firmware-esp32-s3-n16r8.partitions
-        zip --junk-paths ./Release/rnode_firmware-esp32-s3-n16r8.zip ./Release/esptool/esptool.py ./Release/console_image.bin build/rnode_firmware_t3s3_sx126xrnode_firmware_esp32-s3-n16r8.boot_app0 build/rnode_firmware-esp32-s3-n16r8.bin build/rnode_firmware-esp32-s3-n16r8.bootloader build/rnode_firmware-esp32-s3-n16r8.partitions
+    release-espressif-esp32-s3-n16r8:
+        arduino-cli compile --fqbn "esp32:esp32:esp32s3:CDCOnBoot=cdc" $(COMMON_BUILD_FLAGS) --build-property "compiler.cpp.extra_flags=\"-DBOARD_MODEL=0x61\" \"-DBOARD_VARIANT=0x31\""
+        cp ~/.arduino15/packages/esp32/hardware/esp32/$(ARDUINO_ESP_CORE_VER)/tools/partitions/boot_app0.bin build/rnode_firmware_espressif-esp32-s3-n16r8.boot_app0
+        cp build/esp32.esp32.espressif-esp32-s3-n16r8/RNode_Firmware_CE.ino.bin build/rnode_firmware_espressif-esp32-s3-n16r8.bin
+        cp build/esp32.esp32.espressif-esp32-s3-n16r8/RNode_Firmware_CE.ino.bootloader.bin build/rnode_firmware_espressif-esp32-s3-n16r8.bootloader
+        cp build/esp32.esp32.espressif-esp32-s3-n16r8/RNode_Firmware_CE.ino.partitions.bin build/rnode_firmware_espressif-esp32-s3-n16r8.partitions
+        zip --junk-paths ./Release/rnode_firmware_espressif-esp32-s3-n16r8.zip ./Release/esptool/esptool.py ./Release/console_image.bin build/rnode_firmware_t3s3_sx126xrnode_firmware_espressif-esp32-s3-n16r8.boot_app0 build/rnode_firmware_espressif-esp32-s3-n16r8.bin build/rnode_firmware_espressif-esp32-s3-n16r8.bootloader build/rnode_firmware_espressif-esp32-s3-n16r8.partitions
         rm -r build
   
 
