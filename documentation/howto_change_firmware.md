@@ -69,6 +69,8 @@ BOARD_MODEL defines the target board. It is a unique 8 bit number.
 BOARD_VARIANT defines the variant of the board. A board could come with different LoRa transceivers, for example. It is also a unique 8 bit number.
 
 Every target board has a section 'firmware-<board_name>', 'upload-<board-name>' and 'release-<board-name>'
+Then the Arduino version in line 17 can be changed to ( for example from 2.0.17 to 3.11.x ) - check later !!
+
 
 ### boards.h
 
