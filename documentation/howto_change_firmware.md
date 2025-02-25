@@ -18,9 +18,13 @@ Add arduino-cli to path by editing ~/.bashrc
 
     $ nano ~/.bashrc
     add 'export PATH=~/bin:$PATH' to end of file
-    $ test the working : # arduino-cli <r>
+    $ test the working : #arduino-cli <r>
 
-## Clone git repo
+Install the esp32 extra 'tools'
+
+    $ arduino-cli core install esp32:esp32
+
+## Clone git repo (keep the name structure in the same format as the repo)
 
     $ git clone https://github.com/liberatedsystems/RNode_Firmware_CE.git
 
@@ -30,8 +34,6 @@ Install the required BSP and libraries for the ESP32 system.
 
     $ cd RNode_Firmware_CE/
     $ make prep-esp32
-
-This command stalled. I stopped the command by hiting CTRL-C and restarted it.
 
 Add rns software to path:
 
@@ -45,7 +47,19 @@ To test if you can compile the firmware try it:
 
     $ make firmware-heltec32_v3
 
-Fingers crossed!
+Note: The RX buffer value must be changed - */BluetoothSerial.cpp to 6144
+      The TX buffer value must be changed - */BluetoothSerial.cpp to 384    
+
+After this command you will find an compiled folder: $ ~/RNode_Firmware_CE/build/heltec32_v3
+
+    $ make upload-heltec32_v3  - to bring the firmware to the hardware !
+
+To check if the firmware is good installed on the hardware:
+
+    $ nodeconf /dev/ttyACM0 -i
+
+
+
 
 ## Define new board, the theory
 
