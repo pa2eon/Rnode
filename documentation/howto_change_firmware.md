@@ -151,8 +151,8 @@ $ sudo nano Makefile
 	    python3 ./Release/esptool/esptool.py --port $(or $(port), /dev/ttyACM0) --chip esp32-s3 --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size 4MB 0x210000 ./Release/console_image.bin
 
     # Added board from PA2EON
-    release-espressif-esp32-s3-n16r8:
-        arduino-cli compile --fqbn "esp32:esp32:esp32s3:CDCOnBoot=cdc" $(COMMON_BUILD_FLAGS) --build-property "compiler.cpp.extra_flags=\"-DBOARD_MODEL=0x61\" \"-DBOARD_VARIANT=0x31\""
+    release-espressif-esp32-s3-n16r8: check_bt_buffers
+        arduino-cli compile --fqbn "esp32:esp32:esp32s3:CDCOnBoot=cdc" $(COMMON_BUILD_FLAGS) --build-property "compiler.cpp.extra_flags=\"-DBOARD_MODEL=0x62\" \"-DBOARD_VARIANT=0x32\""
         cp ~/.arduino15/packages/esp32/hardware/esp32/$(ARDUINO_ESP_CORE_VER)/tools/partitions/boot_app0.bin build/rnode_firmware_espressif-esp32-s3-n16r8.boot_app0
         cp build/esp32.esp32.espressif-esp32-s3-n16r8/RNode_Firmware_CE.ino.bin build/rnode_firmware_espressif-esp32-s3-n16r8.bin
         cp build/esp32.esp32.espressif-esp32-s3-n16r8/RNode_Firmware_CE.ino.bootloader.bin build/rnode_firmware_espressif-esp32-s3-n16r8.bootloader
