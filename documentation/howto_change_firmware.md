@@ -138,11 +138,11 @@ Here the 0x32 indicates the use of a SX1268 Semtech LoRa transceiver.
 
 $ sudo nano Makefile
 
-# Added-board from PA2EON
+    # Added-board from PA2EON
     firmware-esp32-s3-n16r8: check_bt_buffers
        arduino-cli compile --fqbn "esp32:esp32:esp32s3:CDCOnBoot=cdc" $(COMMON_BUILD_FLAGS) --build-property          "compiler.cpp.extra_flags=\"-DBOARD_MODEL=0x62\""  
 
-# Added board from PA2EON
+    # Added board from PA2EON
     upload-esp32-s3-n16r8:
 	    arduino-cli upload -p $(or $(port), /dev/ttyACM0) --fqbn esp32:esp32:esp32s3
 	    @sleep 1
