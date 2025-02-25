@@ -156,9 +156,9 @@ $ sudo nano Makefile
     release-espressif-esp32-s3-n16r8: check_bt_buffers
         arduino-cli compile --fqbn "esp32:esp32:esp32s3:CDCOnBoot=cdc" $(COMMON_BUILD_FLAGS) --build-property "compiler.cpp.extra_flags=\"-DBOARD_MODEL=0x62\" \"-DBOARD_VARIANT=0x32\""
         cp ~/.arduino15/packages/esp32/hardware/esp32/$(ARDUINO_ESP_CORE_VER)/tools/partitions/boot_app0.bin build/rnode_firmware_espressif-esp32-s3-n16r8.boot_app0
-        cp build/esp32.esp32.espressif-esp32-s3-n16r8/RNode_Firmware_CE.ino.bin build/rnode_firmware_espressif-esp32-s3-n16r8.bin
-        cp build/esp32.esp32.espressif-esp32-s3-n16r8/RNode_Firmware_CE.ino.bootloader.bin build/rnode_firmware_espressif-esp32-s3-n16r8.bootloader
-        cp build/esp32.esp32.espressif-esp32-s3-n16r8/RNode_Firmware_CE.ino.partitions.bin build/rnode_firmware_espressif-esp32-s3-n16r8.partitions
+        cp build/esp32.esp32.ttgo-lora32/RNode_Firmware_CE.ino.bin build/rnode_firmware_espressif-esp32-s3-n16r8.bin
+        cp build/esp32.esp32.ttgo-lora32/RNode_Firmware_CE.ino.bootloader.bin build/rnode_firmware_espressif-esp32-s3-n16r8.bootloader
+        cp build/esp32.esp32.ttgo-lora32/RNode_Firmware_CE.ino.partitions.bin build/rnode_firmware_espressif-esp32-s3-n16r8.partitions
         zip --junk-paths ./Release/rnode_firmware_espressif-esp32-s3-n16r8.zip ./Release/esptool/esptool.py ./Release/console_image.bin build/rnode_firmware_t3s3_sx126xrnode_firmware_espressif-esp32-s3-n16r8.boot_app0 build/rnode_firmware_espressif-esp32-s3-n16r8.bin build/rnode_firmware_espressif-esp32-s3-n16r8.bootloader build/rnode_firmware_espressif-esp32-s3-n16r8.partitions
         rm -r build
 	
