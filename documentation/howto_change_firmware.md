@@ -159,9 +159,14 @@ $ sudo nano Makefile
         zip --junk-paths ./Release/rnode_firmware_espressif-esp32-s3-n16r8.zip ./Release/esptool/esptool.py ./Release/console_image.bin build/rnode_firmware_t3s3_sx126xrnode_firmware_espressif-esp32-s3-n16r8.boot_app0 build/rnode_firmware_espressif-esp32-s3-n16r8.bin build/rnode_firmware_espressif-esp32-s3-n16r8.bootloader build/rnode_firmware_espressif-esp32-s3-n16r8.partitions
         rm -r build
 	
- In the file <b>Boards.h</b> make an entry for the new board within the '#if MCU_VARIANT == MCU_ESP32':
+ In the file <b>Boards.h</b> make the next an entries for the new board within the '#if MCU_VARIANT == MCU_ESP32':
 
-      #elif BOARD_MODEL == BOARD_ESPRESSIF-esp32-s3-n16r8
+     // Board added by PA2EON
+     #define BOARD_ESPRESSIF_ESP32_S3_n16r8 0x62 // Espressif ESP32-S3 N16R8
+     #define MODEL_32            0x32 // SX1268
+     // Place above lines abov the 'Displays' item
+      
+      #elif BOARD_MODEL == BOARD_ESPRESSIF_ESP32_S3_n16r8
       #define IS_ESP32S3 true
       #define HAS_DISPLAY false
       #define HAS_BLUETOOTH false
@@ -214,5 +219,34 @@ $ sudo nano Makefile
                -1  // pin_tcxo_enable
           }
       };
+
+      // Place above text before the lines ' unsupported ESP32 boards ... ' 
+
+Also, in the file Utilities.h add entry:
+
+	#elif BOARD_MODEL == BOARD_ESPRESSIF_ESP32_S3_n16r8
+		void led_rx_on()  { digitalWrite(pin_led_rx, HIGH); }
+		void led_rx_off() { digitalWrite(pin_led_rx, LOW); }
+		void led_tx_on()  { digitalWrite(pin_led_tx, HIGH); }
+		void led_tx_off() { digitalWrite(pin_led_tx, LOW); }
+		void led_id_on()  { }
+		void led_id_off() { }
+
+When al above is added to the files we can flash the firmware;
+
+### Flashing the board
+
+Make shure you are in the dialout group. If not:
+
+    $ sudo usermod -aG dialout <username>
+
+If you are flashing a custom board, you will need to generate a signing key in rnodeconf prior to flashing if you do not already have one by running:
+
+    $ rnodeconf -k
+
+Than flash the firmware.
+
+    $ make upload-espressif-esp32-s3-n16r8
+  
 
 
