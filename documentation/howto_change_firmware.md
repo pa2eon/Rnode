@@ -250,6 +250,8 @@ If you are flashing a custom board, you will need to generate a signing key in r
 Then flash the firmware;
 
     $ make firmware-espressif-esp32-s3-n16r8
+
+Note: If you get the message that the *.ino file is not found .. change the file name with lower letters. 
   
 
 
