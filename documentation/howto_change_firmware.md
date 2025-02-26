@@ -251,7 +251,12 @@ Then flash the firmware;
 
     $ make firmware-espressif-esp32-s3-n16r8
 
-Note: If you get the message that the *.ino file is not found .. change the file name with lower letters. 
+Note: If you get the message that the *.ino file is not found .. change the file name with lower letters. <br>
+If the compiling of the firmware is correct ( you see a nice list of the versions ) then connect the correct hardware and give the command;
+
+    $ make upload-espressif-esp32-s3-n16r8
+    
+
   
 
 
