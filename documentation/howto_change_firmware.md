@@ -32,7 +32,7 @@ Install the esp32 extra 'tools'
 
 Install the required BSP and libraries for the ESP32 system.
 
-    $ cd RNode_Firmware_CE/
+    $ cd RNode_Firmware_CE/	!! Leave this folder name exact as the git source !!
     $ make prep-esp32
 
 Add rns software to path:
@@ -251,15 +251,12 @@ Then flash the firmware;
 
     $ make firmware-espressif-esp32-s3-n16r8
 
-Note: If you get the message that the *.ino file is not found .. change the file name with lower letters. <br>
+Note: If you get the message that the *.ino file is not found .. check the directory name ( upper and lower letters) ! <br>
 If the compiling of the firmware is correct ( you see a nice list of the versions ) then connect the correct hardware and give the command;
 
     $ make upload-espressif-esp32-s3-n16r8
 
-Note: Above setup is made on Linux Mint 21.<br>
-It is possible that the upload command will gove an error on the nam of the *.ino file .. check the lower and higher letters in the name.<br>
-You can change this in de folder ' build' .. (have to check this !! )
-    
+ 
 
   
 
